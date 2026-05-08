@@ -1,0 +1,490 @@
+/* ====== ОБЩИЕ СТИЛИ ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ====== НАВИГАЦИЯ ====== */
+.navbar {
+    background: linear-gradient(135deg, #1a237e, #283593);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.logo span {
+    color: #ffd700;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+}
+
+.nav-links a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(255,255,255,0.2);
+    color: #ffd700;
+}
+
+/* ====== ГЕРОЙ-БЛОК ====== */
+.hero {
+    background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255,215,0,0.1);
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.hero h1 span {
+    color: #ffd700;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+/* ====== КНОПКИ ====== */
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ffd700, #ffab00);
+    color: #1a237e;
+    box-shadow: 0 8px 25px rgba(255,215,0,0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255,215,0,0.5);
+}
+
+.btn-secondary {
+    background: white;
+    color: #1a237e;
+    border: 2px solid #1a237e;
+}
+
+.btn-secondary:hover {
+    background: #1a237e;
+    color: white;
+}
+
+/* ====== КАРТОЧКИ ====== */
+.section {
+    padding: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #1a237e;
+    margin-bottom: 10px;
+    font-weight: 900;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    border: 1px solid #eee;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #1a237e;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ====== ВИДЖЕТ ВАЛЮТ ====== */
+.currency-widget {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px auto 0;
+    max-width: 700px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+}
+
+.currency-widget h3 {
+    color: #1a237e;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.currency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.currency-item {
+    background: linear-gradient(135deg, #f5f7fa, #e8eaf6);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    border-left: 4px solid #ffd700;
+}
+
+.currency-item .code {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #1a237e;
+}
+
+.currency-item .name {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.currency-item .rate {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+.currency-item .change {
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.change.up { color: #2e7d32; }
+.change.down { color: #c62828; }
+
+.currency-loading {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+
+/* ====== ТЕНДЕРЫ ====== */
+.tenders-section {
+    background: white;
+    padding: 60px 0;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #1a237e;
+    color: white;
+    border-color: #1a237e;
+}
+
+.tenders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tender-card {
+    background: #f8f9ff;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #e8eaf6;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.tender-card:hover {
+    border-color: #3949ab;
+    box-shadow: 0 10px 30px rgba(26,35,126,0.1);
+}
+
+.tender-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tender-number {
+    background: #1a237e;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.tender-price {
+    background: linear-gradient(135deg, #ffd700, #ffab00);
+    color: #1a237e;
+    padding: 5px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.tender-title {
+    font-size: 1.15rem;
+    color: #1a237e;
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.tender-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.tender-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tender-tag {
+    display: inline-block;
+    background: #e8eaf6;
+    color: #3949ab;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.tender-hidden {
+    display: none !important;
+}
+
+/* ====== ФУТЕР ====== */
+.footer {
+    background: #1a237e;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.footer p {
+    opacity: 0.8;
+}
+
+/* ====== МОДАЛКИ ====== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    max-width: 450px;
+    width: 100%;
+    position: relative;
+    animation: modalSlide 0.3s ease;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3949ab;
+}
+
+.success-msg {
+    display: none;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.success-msg.show {
+    display: block;
+}
+
+/* ====== АДАПТИВНОСТЬ ====== */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .nav-links { gap: 3px; }
+    .nav-links a { padding: 6px 12px; font-size: 0.85rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .tender-header { flex-direction: column; }
+}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Актуальные тендеры — Марк</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Эксперт<span>Тендер</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="tenders.html" class="active">Тендеры</a></li>
+                <li><a href="about.html">Услуги</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Шапка страницы -->
+    <section class="hero" style="padding: 50px 0 40px;">
+        <div class="container">
+            <h1>Актуальные <span>тендеры</span></h1>
+            <p>Подборка актуальных закупок по 44-ФЗ и 223-ФЗ. Данные обновляются ежедневно.</p>
+        </div>
+    </section>
+
+    <!-- Фильтры и список -->
+    <section class="tenders-section">
+        <div class="container">
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterTenders('all')">Все</button>
+                <button class="filter-btn" onclick="filterTenders('Строительство')">Строительство</button>
+                <button class="filter-btn" onclick="filterTenders('IT')">IT и техника</button>
+                <button class="filter-btn" onclick="filterTenders('Медицина')">Медицина</button>
+                <button class="filter-btn" onclick="filterTenders('Транспорт')">Транспорт</button>
+                <button class="filter-btn" onclick="filterTenders('Москва')">Москва</button>
+                <button class="filter-btn" onclick="filterTenders('СПб')">Санкт-Петербург</button>
+            </div>
+
+            <div class="tenders-list" id="tendersList">
+                <!-- Тендер 1 -->
+                <div class="tender-card" data-category="Строительство Москва">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0373100010426000100</span>
+                        <span class="tender-price">14 850 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Ремонт фасада административного здания по адресу: г. Москва, ул. Ленина, д. 15</div>
+                    <div class="tender-meta">
+                        <span>🏢 Мосгорстрой</span>
+                        <span>📍 Москва</span>
+                        <span>📅 Приём заявок до: 25.05.2026</span>
+                        <span>⚖️ 44-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">Строительство</span>
+                    <span class="tender-tag">Электронный аукцион</span>
+                </div>
+
+                <!-- Тендер 2 -->
+                <div class="tender-card" data-category="IT Москва">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0321100010426000456</span>
+                        <span class="tender-price">3 200 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Поставка лицензий на антивирусное ПО для нужд Департамента образования</div>
+                    <div class="tender-meta">
+                        <span>🏢 Департамент образования г. Москвы</span>
+                        <span>📍 Москва</span>
+                        <span>📅 Приём заявок до: 18.05.2026</span>
+                        <span>⚖️ 44-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">IT</span>
+                    <span class="tender-tag">Запрос котировок</span>
+                </div>
+
+                <!-- Тендер 3 -->
+                <div class="tender-card" data-category="Медицина СПб">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0373200010426000789</span>
+                        <span class="tender-price">8 450 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Поставка расходных материалов для лабораторной диагностики (реагенты, штативы, пробирки)</div>
+                    <div class="tender-meta">
+                        <span>🏢 ГБУЗ "Городская поликлиника № 42"</span>
+                        <span>📍 Санкт-Петербург</span>
+                        <span>📅 Приём заявок до: 30.05.2026</span>
+                        <span>⚖️ 44-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">Медицина</span>
+                    <span class="tender-tag">Открытый конкурс</span>
+                </div>
+
+                <!-- Тендер 4 -->
+                <div class="tender-card" data-category="Транспорт Москва">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0193100000326000123</span>
+                        <span class="tender-price">45 000 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Оказание услуг по техническому обслуживанию и ремонту легковых автомобилей</div>
+                    <div class="tender-meta">
+                        <span>🏢 АО "Мосгортранс"</span>
+                        <span>📍 Москва</span>
+                        <span>📅 Приём заявок до: 12.06.2026</span>
+                        <span>⚖️ 223-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">Транспорт</span>
+                    <span class="tender-tag">Конкурентные переговоры</span>
+                </div>
+
+                <!-- Тендер 5 -->
+                <div class="tender-card" data-category="Строительство СПб">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0373200010426000345</span>
+                        <span class="tender-price">67 300 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Строительство детского сада на 220 мест в Красносельском районе</div>
+                    <div class="tender-meta">
+                        <span>🏢 Комитет по строительству СПб</span>
+                        <span>📍 Санкт-Петербург</span>
+                        <span>📅 Приём заявок до: 15.06.2026</span>
+                        <span>⚖️ 44-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">Строительство</span>
+                    <span class="tender-tag">Электронный аукцион</span>
+                </div>
+
+                <!-- Тендер 6 -->
+                <div class="tender-card" data-category="IT СПб">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0321200000326000567</span>
+                        <span class="tender-price">1 890 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Разработка и внедрение информационной системы учета заявок граждан</div>
+                    <div class="tender-meta">
+                        <span>🏢 СПб ГУП "Водоканал"</span>
+                        <span>📍 Санкт-Петербург</span>
+                        <span>📅 Приём заявок до: 22.05.2026</span>
+                        <span>⚖️ 223-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">IT</span>
+                    <span class="tender-tag">Запрос предложений</span>
+                </div>
+
+                <!-- Тендер 7 -->
+                <div class="tender-card" data-category="Медицина Москва">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0373100010426000991</span>
+                        <span class="tender-price">5 600 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Поставка медицинского оборудования: УЗИ-аппарат, ЭКГ, дефибриллятор</div>
+                    <div class="tender-meta">
+                        <span>🏢 ГБУЗ "Городская клиническая больница № 15"</span>
+                        <span>📍 Москва</span>
+                        <span>📅 Приём заявок до: 28.05.2026</span>
+                        <span>⚖️ 44-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">Медицина</span>
+                    <span class="tender-tag">Открытый конкурс</span>
+                </div>
+
+                <!-- Тендер 8 -->
+                <div class="tender-card" data-category="Транспорт СПб">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0193200000326000780</span>
+                        <span class="tender-price">12 100 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Поставка 5 единиц грузового автотранспорта (бортовые автомобили Г/П 5 тонн)</div>
+                    <div class="tender-meta">
+                        <span>🏢 АО "Ленспецсму"</span>
+                        <span>📍 Санкт-Петербург</span>
+                        <span>📅 Приём заявок до: 10.06.2026</span>
+                        <span>⚖️ 223-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">Транспорт</span>
+                    <span class="tender-tag">Аукцион</span>
+                </div>
+
+                <!-- Тендер 9 -->
+                <div class="tender-card" data-category="Строительство Москва">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0373100010426000156</span>
+                        <span class="tender-price">23 700 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Капитальный ремонт системы отопления многоквартирных домов (12 домов)</div>
+                    <div class="tender-meta">
+                        <span>🏢 ГБУ "Жилищник района Академический"</span>
+                        <span>📍 Москва</span>
+                        <span>📅 Приём заявок до: 05.06.2026</span>
+                        <span>⚖️ 44-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">Строительство</span>
+                    <span class="tender-tag">Электронный аукцион</span>
+                </div>
+
+                <!-- Тендер 10 -->
+                <div class="tender-card" data-category="IT Москва">
+                    <div class="tender-header">
+                        <span class="tender-number">№ 0321100010426000678</span>
+                        <span class="tender-price">980 000 ₽</span>
+                    </div>
+                    <div class="tender-title">Поставка серверного оборудования и систем хранения данных (СХД)</div>
+                    <div class="tender-meta">
+                        <span>🏢 Мосгордума</span>
+                        <span>📍 Москва</span>
+                        <span>📅 Приём заявок до: 20.05.2026</span>
+                        <span>⚖️ 44-ФЗ</span>
+                    </div>
+                    <span class="tender-tag">IT</span>
+                    <span class="tender-tag">Запрос котировок</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма подписки на рассылку -->
+    <section class="section" style="background: linear-gradient(135deg, #e8eaf6, #f5f7fa); padding: 50px 0;">
+        <div class="container" style="max-width: 600px;">
+            <div class="card" style="text-align: center;">
+                <div class="card-icon">📬</div>
+                <h3>Получайте свежие тендеры на почту</h3>
+                <p style="margin-bottom: 20px; color: #555;">Оставьте контакты — и мы будем присылать подборку актуальных закупок под ваш бизнес.</p>
+                <form id="subscribeForm" onsubmit="saveSubscriber(event)">
+                    <div class="form-group" style="text-align: left;">
+                        <label>Ваше имя *</label>
+                        <input type="text" id="subName" required placeholder="Как к вам обращаться?" style="width: 100%;">
+                    </div>
+                    <div class="form-group" style="text-align: left;">
+                        <label>Email или телефон *</label>
+                        <input type="text" id="subContact" required placeholder="Email или WhatsApp" style="width: 100%;">
+                    </div>
+                    <div class="form-group" style="text-align: left;">
+                        <label>Интересующая сфера</label>
+                        <input type="text" id="subSphere" placeholder="Например: строительство, IT, медицина" style="width: 100%;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Подписаться на рассылку</button>
+                    <div class="success-msg" id="subSuccess">
+                        ✅ Вы подписаны! Первую подборку отправим в ближайшее время.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Марк — Эксперт в тендерах. Данные носят демонстрационный характер.</p>
+        </div>
+    </footer>
+
+    <script>
+        function filterTenders(category) {
+            const cards = document.querySelectorAll('.tender-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                const cats = card.getAttribute('data-category');
+                if (category === 'all' || cats.includes(category)) {
+                    card.classList.remove('tender-hidden');
+                    card.style.animation = 'slideUp 0.4s ease';
+                } else {
+                    card.classList.add('tender-hidden');
+                }
+            });
+        }
+
+        // Подписка на рассылку
+        const SUB_KEY = 'tender_subscribers';
+
+        function loadSubscribers() {
+            const data = localStorage.getItem(SUB_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveSubscribers(list) {
+            localStorage.setItem(SUB_KEY, JSON.stringify(list));
+        }
+
+        function saveSubscriber(event) {
+            event.preventDefault();
+            const name = document.getElementById('subName').value.trim();
+            const contact = document.getElementById('subContact').value.trim();
+            const sphere = document.getElementById('subSphere').value.trim();
+
+            if (!name || !contact) return;
+
+            const subs = loadSubscribers();
+            subs.unshift({
+                id: Date.now(),
+                name,
+                contact,
+                sphere,
+                date: new Date().toLocaleString('ru-RU')
+            });
+            saveSubscribers(subs);
+
+            document.getElementById('subSuccess').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('subSuccess').classList.remove('show');
+                document.getElementById('subscribeForm').reset();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
