@@ -69,7 +69,7 @@
     </footer>
 
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLS8EcHBKBxbFLA3I4HW1ex_GJXLQ6ChwxGrtjGNmItJKMYkkktNLARhhHOL2XHVfa/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLCHVL8e3svzldKpXDnXUOAP28CX7mqVJAevalCLOGY45OtV3M2rNMYrVn9mtD0MmE/exec';
 
         async function saveContact(event) {
             event.preventDefault();
@@ -85,11 +85,12 @@
             button.textContent = '⏳ Отправка...';
 
             try {
-                await fetch(SCRIPT_URL, {
+                const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, contact, message })
                 });
+                await response.json();
 
                 document.getElementById('successMsg').classList.add('show');
                 document.getElementById('contactForm').reset();
