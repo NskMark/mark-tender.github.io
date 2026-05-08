@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Марк</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Эксперт<span>Тендер</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="tenders.html">Тендеры</a></li>
+                <li><a href="about.html">Услуги</a></li>
+                <li><a href="contacts.html" class="active">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" style="padding: 50px 0 40px;">
+        <div class="container">
+            <h1>Свяжитесь <span>со мной</span></h1>
+            <p>Расскажите о вашем бизнесе, и я подскажу, с чего начать.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" style="max-width: 600px;">
+            <div class="card" style="text-align: center; margin-bottom: 30px;">
+                <div class="card-icon">📱</div>
+                <h3>Свяжитесь со мной</h3>
+                <p style="font-size: 1.8rem; font-weight: 900; color: #1a237e; margin-top: 15px;">89999999999</p>
+            </div>
+
+            <div class="card">
+                <h3 style="text-align: center; margin-bottom: 25px; color: #1a237e;">Или оставьте заявку</h3>
+                <form id="contactForm" onsubmit="saveContact(event)">
+                    <div class="form-group">
+                        <label>Ваше имя *</label>
+                        <input type="text" id="name" required placeholder="Как к вам обращаться?">
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон или Email *</label>
+                        <input type="text" id="contact" required placeholder="Удобный способ связи">
+                    </div>
+                    <div class="form-group">
+                        <label>О чём хотите поговорить?</label>
+                        <textarea id="message" rows="4" placeholder="Расскажите кратко о задаче"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку</button>
+                    <div class="success-msg" id="successMsg">
+                        ✅ Заявка отправлена! Я свяжусь с вами в ближайшее время.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Марк — Эксперт в тендерах.</p>
+        </div>
+    </footer>
+
+    <script>
+        const STORAGE_KEY = 'mark_contacts';
+
+        function loadContacts() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveContacts(contacts) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+        }
+
+        function saveContact(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const contact = document.getElementById('contact').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !contact) return;
+
+            const entry = {
+                id: Date.now(),
+                name,
+                email: contact.includes('@') ? contact : '',
+                phone: !contact.includes('@') ? contact : '',
+                message,
+                date: new Date().toLocaleString('ru-RU')
+            };
+
+            const contacts = loadContacts();
+            contacts.unshift(entry);
+            saveContacts(contacts);
+
+            document.getElementById('successMsg').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('successMsg').classList.remove('show');
+                document.getElementById('contactForm').reset();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
