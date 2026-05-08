@@ -280,19 +280,10 @@
             });
         }
 
-        // Подписка на рассылку
-        const SUB_KEY = 'tender_subscribers';
+        // Подписка на рассылку — отправка в Telegram
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLS8EcHBKBxbFLA3I4HW1ex_GJXLQ6ChwxGrtjGNmItJKMYkkktNLARhhHOL2XHVfa/exec';
 
-        function loadSubscribers() {
-            const data = localStorage.getItem(SUB_KEY);
-            return data ? JSON.parse(data) : [];
-        }
-
-        function saveSubscribers(list) {
-            localStorage.setItem(SUB_KEY, JSON.stringify(list));
-        }
-
-        function saveSubscriber(event) {
+        async function saveSubscriber(event) {
             event.preventDefault();
             const name = document.getElementById('subName').value.trim();
             const contact = document.getElementById('subContact').value.trim();
@@ -300,21 +291,33 @@
 
             if (!name || !contact) return;
 
-            const subs = loadSubscribers();
-            subs.unshift({
-                id: Date.now(),
-                name,
-                contact,
-                sphere,
-                date: new Date().toLocaleString('ru-RU')
-            });
-            saveSubscribers(subs);
+            const button = event.target.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            button.disabled = true;
+            button.textContent = '⏳ Отправка...';
 
-            document.getElementById('subSuccess').classList.add('show');
-            setTimeout(() => {
-                document.getElementById('subSuccess').classList.remove('show');
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Подписка: ' + name,
+                        contact: contact,
+                        message: 'Сфера: ' + (sphere || 'не указана')
+                    })
+                });
+
+                document.getElementById('subSuccess').classList.add('show');
                 document.getElementById('subscribeForm').reset();
-            }, 3000);
+                setTimeout(() => {
+                    document.getElementById('subSuccess').classList.remove('show');
+                }, 4000);
+            } catch (e) {
+                alert('❌ Ошибка отправки. Проверьте интернет.');
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
         }
     </script>
 </body>

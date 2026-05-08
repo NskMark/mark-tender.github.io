@@ -69,18 +69,9 @@
     </footer>
 
     <script>
-        const STORAGE_KEY = 'mark_contacts';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLS8EcHBKBxbFLA3I4HW1ex_GJXLQ6ChwxGrtjGNmItJKMYkkktNLARhhHOL2XHVfa/exec';
 
-        function loadContacts() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            return data ? JSON.parse(data) : [];
-        }
-
-        function saveContacts(contacts) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
-        }
-
-        function saveContact(event) {
+        async function saveContact(event) {
             event.preventDefault();
             const name = document.getElementById('name').value.trim();
             const contact = document.getElementById('contact').value.trim();
@@ -88,24 +79,29 @@
 
             if (!name || !contact) return;
 
-            const entry = {
-                id: Date.now(),
-                name,
-                email: contact.includes('@') ? contact : '',
-                phone: !contact.includes('@') ? contact : '',
-                message,
-                date: new Date().toLocaleString('ru-RU')
-            };
+            const button = event.target.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            button.disabled = true;
+            button.textContent = '⏳ Отправка...';
 
-            const contacts = loadContacts();
-            contacts.unshift(entry);
-            saveContacts(contacts);
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, contact, message })
+                });
 
-            document.getElementById('successMsg').classList.add('show');
-            setTimeout(() => {
-                document.getElementById('successMsg').classList.remove('show');
+                document.getElementById('successMsg').classList.add('show');
                 document.getElementById('contactForm').reset();
-            }, 3000);
+                setTimeout(() => {
+                    document.getElementById('successMsg').classList.remove('show');
+                }, 4000);
+            } catch (e) {
+                alert('❌ Ошибка отправки. Проверьте интернет и попробуйте снова.');
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
         }
     </script>
     <script>
