@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Марк — Эксперт в тендерах</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a237e">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
 </head>
 <body>
     <!-- Навигация -->
@@ -85,6 +88,14 @@
         </div>
     </footer>
 
+    <script>
+        // Регистрация Service Worker для PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(reg => console.log('Service Worker зарегистрирован'))
+                .catch(err => console.log('Ошибка регистрации SW:', err));
+        }
+    </script>
     <script>
         // === ЖИВЫЕ КУРСЫ ВАЛЮТ (open.er-api.com) ===
         async function loadCurrencies() {
