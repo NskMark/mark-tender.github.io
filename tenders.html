@@ -225,24 +225,25 @@
                 <div class="card-icon">📬</div>
                 <h3>Получайте свежие тендеры на почту</h3>
                 <p style="margin-bottom: 20px; color: #555;">Оставьте контакты — и мы будем присылать подборку актуальных закупок под ваш бизнес.</p>
-                <form id="subscribeForm" onsubmit="saveSubscriber(event)">
+                <form id="subscribeForm" action="https://script.google.com/macros/s/AKfycbyLCHVL8e3svzldKpXDnXUOAP28CX7mqVJAevalCLOGY45OtV3M2rNMYrVn9mtD0MmE/exec" method="POST" target="sub-iframe" onsubmit="onSubSubmit()">
                     <div class="form-group" style="text-align: left;">
                         <label>Ваше имя *</label>
-                        <input type="text" id="subName" required placeholder="Как к вам обращаться?" style="width: 100%;">
+                        <input type="text" name="name" required placeholder="Как к вам обращаться?" style="width: 100%;">
                     </div>
                     <div class="form-group" style="text-align: left;">
                         <label>Email или телефон *</label>
-                        <input type="text" id="subContact" required placeholder="Email или WhatsApp" style="width: 100%;">
+                        <input type="text" name="contact" required placeholder="Email или WhatsApp" style="width: 100%;">
                     </div>
                     <div class="form-group" style="text-align: left;">
                         <label>Интересующая сфера</label>
-                        <input type="text" id="subSphere" placeholder="Например: строительство, IT, медицина" style="width: 100%;">
+                        <input type="text" name="message" placeholder="Например: строительство, IT, медицина" style="width: 100%;">
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Подписаться на рассылку</button>
                     <div class="success-msg" id="subSuccess">
                         ✅ Вы подписаны! Первую подборку отправим в ближайшее время.
                     </div>
                 </form>
+                <iframe name="sub-iframe" style="display:none"></iframe>
             </div>
         </div>
     </section>
@@ -280,45 +281,23 @@
             });
         }
 
-        // Подписка на рассылку — отправка в Telegram
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLCHVL8e3svzldKpXDnXUOAP28CX7mqVJAevalCLOGY45OtV3M2rNMYrVn9mtD0MmE/exec';
-
-        async function saveSubscriber(event) {
-            event.preventDefault();
-            const name = document.getElementById('subName').value.trim();
-            const contact = document.getElementById('subContact').value.trim();
-            const sphere = document.getElementById('subSphere').value.trim();
-
-            if (!name || !contact) return;
-
-            const button = event.target.querySelector('button[type="submit"]');
-            const originalText = button.textContent;
+        // Подписка на рассылку — отправка в Telegram через iframe
+        function onSubSubmit() {
+            const button = document.querySelector('#subscribeForm button[type="submit"]');
             button.disabled = true;
             button.textContent = '⏳ Отправка...';
 
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: 'Подписка: ' + name,
-                        contact: contact,
-                        message: 'Сфера: ' + (sphere || 'не указана')
-                    })
-                });
-                await response.json();
-
+            setTimeout(() => {
                 document.getElementById('subSuccess').classList.add('show');
                 document.getElementById('subscribeForm').reset();
+                button.disabled = false;
+                button.textContent = 'Подписаться на рассылку';
                 setTimeout(() => {
                     document.getElementById('subSuccess').classList.remove('show');
                 }, 4000);
-            } catch (e) {
-                alert('❌ Ошибка отправки. Проверьте интернет.');
-            } finally {
-                button.disabled = false;
-                button.textContent = originalText;
-            }
+            }, 1000);
+
+            return true;
         }
     </script>
 </body>
