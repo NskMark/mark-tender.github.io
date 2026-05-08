@@ -10,6 +10,7 @@ body {
     background: #f5f7fa;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
@@ -480,11 +481,54 @@ body {
     display: block;
 }
 
-/* ====== АДАПТИВНОСТЬ ====== */
+/* ====== АДАПТИВНОСТЬ (МОБИЛЬНЫЕ) ====== */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
-    .nav-links { gap: 3px; }
-    .nav-links a { padding: 6px 12px; font-size: 0.85rem; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .tender-header { flex-direction: column; }
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 15px;
+    }
+    .logo {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links {
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .nav-links a {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+    }
+    .hero {
+        padding: 40px 0 30px;
+    }
+    .hero h1 {
+        font-size: 1.7rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .section {
+        padding: 40px 0;
+    }
+    .card {
+        padding: 25px;
+    }
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .tender-header {
+        flex-direction: column;
+    }
+    .currency-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .container {
+        padding: 0 15px;
+    }
 }
